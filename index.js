@@ -36,7 +36,9 @@ function random(...args) {
 }
 
 class Server {
-    constructor({playerCount = 15, server = undefined}) {
+    constructor({playerCount = 15, server = undefined} = {}) {
+        if (!playerCount || typeof playerCount != "number") playerCount = 15;
+
         let opts = {noServer: !server};
         if (server) opts.server = server;
         this.server = new ws.Server(opts);
